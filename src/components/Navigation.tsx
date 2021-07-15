@@ -1,92 +1,64 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Burger from "./Burger";
+import { SocialList } from "../components/SocialList";
 import { useState } from "react";
 
 export default function Navigation() {
   const router = useRouter();
   const [active, setActive] = useState(false);
   return (
-    <>
-      <Burger active={active} onClick={() => setActive(!active)} />
-      <div className={"container " + (active ? "active" : "")}>
-        <ul>
-          <li>
-            <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>about</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/posts">
-              <a
-                className={
-                  router.pathname.startsWith("/posts") ? "active" : null
-                }
-              >
-                blog
-              </a>
-            </Link>
-          </li>
-        </ul>
-        <style jsx>
-          {`
-            .container {
-              width: 0;
-            }
-            ul {
-              opacity: 0;
-              width: 100%;
-              height: 100vh;
-              text-align: right;
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              position: fixed;
-              top: 0;
-              background-color: #fff;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              z-index: 1;
-              transform: translateY(100%);
-              transition: opacity 200ms;
-            }
-            .active ul {
-              opacity: 1;
-              transform: translateY(0);
-            }
-            li {
-              margin-bottom: 1.75rem;
-              font-size: 2rem;
-              padding: 0 1.5rem 0 0;
-            }
-            li:last-child {
-              margin-bottom: 0;
-            }
-            .active {
-              color: #222;
-            }
-
-            @media (min-width: 769px) {
-              .container {
-                width: 7rem;
-                display: block;
-              }
-              ul {
-                opacity: 1;
-                width: 7rem;
-                top: auto;
-                display: block;
-                transform: translateY(0);
-              }
-              li {
-                font-size: 1rem;
-                padding: 0;
-              }
-            }
-          `}
-        </style>
+    <div className="sidebar">
+      <div className="header">
+        <div className="dots">
+          <div className="red"></div>
+          <div className="yellow"></div>
+          <div className="green"></div>
+        </div>
+        <SocialList size="15" fill="white" separation="10px"/>
       </div>
-    </>
+
+     
+      <style jsx>{`
+        .sidebar {
+          border: 1px solid #2b2b2f;
+          border-radius: 10px;
+          background: #1d1d1d;
+          display: flex;
+          flex-direction: column;
+          padding: 15px;
+          height: 100%;
+        }
+
+        .header {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          justify-content: space-between;
+        }
+        .dots {
+          display: flex;
+        }
+
+        .dots div {
+          border-radius: 99px;
+          height: 13px;
+          width: 13px;
+        }
+        .dots div:not(:first-child) {
+          margin-left: 5px;
+        }
+
+        .red {
+          background: #ea6963;
+        }
+        .yellow {
+          background: #f3bc59;
+        }
+        .green {
+          background: #64c15a;
+        }
+      `}</style>
+    </div>
   );
 }

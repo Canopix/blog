@@ -17,7 +17,7 @@ export default function Index() {
           </h1>
           <span className="handle">@nextjs-netlify-blog</span>
           <h2>A blog template with Next.js and Netlify.</h2>
-          <SocialList />
+          <SocialList size={24} fill="#222" separation="2rem"/>
         </div>
       </div>
       <style jsx>{`
