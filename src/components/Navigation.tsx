@@ -1,8 +1,10 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Burger from "./Burger";
+import AccordeonOptions from './Accordeon';
 import { SocialList } from "../components/SocialList";
-import { useState } from "react";
 
 export default function Navigation() {
   const router = useRouter();
@@ -15,10 +17,13 @@ export default function Navigation() {
           <div className="yellow"></div>
           <div className="green"></div>
         </div>
-        <SocialList size="15" fill="white" separation="10px"/>
+        <SocialList size="15" fill="white" separation="10px" />
       </div>
+      <div className="logo-container">
+        <img src="/images/logo.png" width="280" height="280" />
+      </div>
+      <AccordeonOptions title="Posts by Tags"/>
 
-     
       <style jsx>{`
         .sidebar {
           border: 1px solid #2b2b2f;
@@ -57,6 +62,10 @@ export default function Navigation() {
         }
         .green {
           background: #64c15a;
+        }
+        .logo-container {
+          display: flex;
+          justify-content: center;
         }
       `}</style>
     </div>
